@@ -2,7 +2,7 @@
 // CEP Passado como parâmetro na requisição
 $cep = $_GET['cep'];
 
-if (isset($cep) && strlen($cep) == 8 && $cep != '' ) {
+if (isset($cep) && strlen($cep) == 8 && $cep != '') {
     // API
     $url = "https://viacep.com.br/ws/{$cep}/xml/";
 
@@ -20,18 +20,23 @@ if (isset($cep) && strlen($cep) == 8 && $cep != '' ) {
     // Pegando os dados do JSON para verificar se o CEP informado já foi consultado anteriormente
     $verifyData = json_decode(file_get_contents($dataFileName), true);
 
-    
 
     foreach ($verifyData as $key => $value) {
 
         if (isset($value['cep'])) {
+
+            $complemento = $value['complemento'];
+
+            if (is_array($complemento)) {
+                $complemento = implode(",", $value['complemento']);
+            }
 
             // JSON Response
             if (str_replace("-", "", $value['cep']) === $cep) {
                 print "<tr>";
                 print "<td>{$value['cep']}</td>";
                 print "<td>{$value['logradouro']}</td>";
-                print "<td>{$value['complemento']}</td>";
+                print "<td>{$complemento}</td>";
                 print "<td>{$value['bairro']}</td>";
                 print "<td>{$value['localidade']}</td>";
                 print "<td>{$value['uf']}</td>";
@@ -42,23 +47,10 @@ if (isset($cep) && strlen($cep) == 8 && $cep != '' ) {
                 print "</tr>";
                 break;
 
-                // API XML Response
-            } else {
-                print "<tr>";
-                print "<td>{$xml->cep[0]}</td>";
-                print "<td>{$xml->logradouro[0]}</td>";
-                print "<td>{$xml->complemento[0]}</td>";
-                print "<td>{$xml->bairro[0]}</td>";
-                print "<td>{$xml->localidade[0]}</td>";
-                print "<td>{$xml->uf[0]}</td>";
-                print "<td>{$xml->ibge[0]}</td>";
-                print "<td>{$xml->gia[0]}</td>";
-                print "<td>{$xml->ddd[0]}</td>";
-                print "<td>{$xml->siafi[0]}</td>";
-                print "</tr>";
+            
             }
         }
     }
-}else{
+} else {
     print "<div class='alert alert-warning'>Desculpe, não foi possível encontrar este endereço, tente novamente</div>";
 }

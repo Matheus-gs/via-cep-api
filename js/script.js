@@ -6,7 +6,7 @@ const table = document.querySelector('.table')
 const tbody = document.querySelector('div.container table tbody')
 
 const spinner = document.querySelector('.spinner-border')
-
+// const alert = document.querySelector('.alert')
 
 window.onload = () => {
     spinner.style.display = 'none'
@@ -15,6 +15,8 @@ window.onload = () => {
 
 getAddressBtn.addEventListener('click', () => {
     const cep = getAddressInput.value
+
+
     spinner.style.display = 'unset'
 
     url = `ajax.php?cep=${cep}`
@@ -30,5 +32,4 @@ getAddressBtn.addEventListener('click', () => {
 
     xhr.open('GET', url, true)
     xhr.send()
-
 })
