@@ -1,3 +1,13 @@
+
+# Instruções para rodar o projeto
+
+#### versão utilizada [PHP-8.1.1](https://windows.php.net/downloads/releases/php-8.1.1-Win32-vs16-x64.zip)
+
+#### 1° - Abra um terminal dentro da pasta do projeto e execute o comando php -S localhost:80
+#### 2° - Abra o navegador e digite na barra de pesquisa localhost:80 (ou só localhost)
+
+<br>
+
 # PHPtest
 
 Teste de seleção para vaga PHP
