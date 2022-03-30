@@ -21,15 +21,20 @@
         <h2>Consumindo API</h2>
 
         <div class="w-50 d-flex flex-column align-items-center mb-3">
+
             <div class="form-floating m-3 w-50">
-                <input type="text" class="form-control" maxlength="8" name="cepAddress" id="cepAddress" placeholder="Digite o CEP">
+                <input type="text" class="form-control" maxlength="8" name="cepAddress" id="cepAddress" placeholder="Digite o CEP"  required>
                 <label for="cepAddress">Digite o CEP</label>
             </div>
             <button class="btn btn-outline-primary w-25" id="cepAddressBtn">Buscar</button>
+
         </div>
 
-        <div class="container">
+        <div class="container d-flex flex-column align-items-center">
+
+            <!-- Table with response data -->
             <table class="table">
+
                 <thead>
                     <th>CEP</th>
                     <th>Logradouro</th>
@@ -42,10 +47,23 @@
                     <th>DDD</th>
                     <th>SIAFI</th>
                 </thead>
+
                 <tbody>
                     <!--  -->
                 </tbody>
+
             </table>
+
+            <!-- Spinner -->
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+
+            <!-- Friendly error message -->
+            <div class="alert alert-danger" role="alert">
+                Desculpe mas não encontramos o CEP que você está procurando, verifique os dados e tente novamente.
+            </div>
+
         </div>
 
     </div>
