@@ -1,13 +1,12 @@
 <?php
+// CEP Passado como parâmetro na requisição
+$cep = $_GET['cep'];
 
-if (isset($_GET['cep'])) {
-    // CEP Passado como parâmetro na requisição
-    $cep = $_GET['cep'];
-
+if (isset($cep) && strlen($cep) == 8 && $cep != '' ) {
     // API
     $url = "https://viacep.com.br/ws/{$cep}/xml/";
 
-    // Extraindo dados da API
+    // Transformando XML em objeto
     $xml = simplexml_load_file($url);
 
     // Criando arquivo json e iniciando o arquivo com um array vazio;
@@ -21,12 +20,14 @@ if (isset($_GET['cep'])) {
     // Pegando os dados do JSON para verificar se o CEP informado já foi consultado anteriormente
     $verifyData = json_decode(file_get_contents($dataFileName), true);
 
+    
+
     foreach ($verifyData as $key => $value) {
 
         if (isset($value['cep'])) {
 
             // JSON Response
-            if (str_replace("-", "", $value['cep']) == $cep) {
+            if (str_replace("-", "", $value['cep']) === $cep) {
                 print "<tr>";
                 print "<td>{$value['cep']}</td>";
                 print "<td>{$value['logradouro']}</td>";
@@ -58,4 +59,6 @@ if (isset($_GET['cep'])) {
             }
         }
     }
+}else{
+    print "<div class='alert alert-warning'>Desculpe, não foi possível encontrar este endereço, tente novamente</div>";
 }

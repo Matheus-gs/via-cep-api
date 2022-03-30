@@ -60,10 +60,6 @@
             </div>
 
             <!-- Friendly error message -->
-            <div class="alert alert-danger" role="alert">
-                Desculpe mas não encontramos o CEP que você está procurando, verifique os dados e tente novamente.
-            </div>
-
         </div>
 
     </div>
