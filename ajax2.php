@@ -13,7 +13,7 @@ if (isset($cep) && strlen($cep) == 8 && $cep != '') {
     $verifyData = json_decode(file_get_contents($dataFileName), true);
 
     foreach ($verifyData as $key => $value) {
-        if (isset($value['cep']) && str_replace("-", "", $value['cep']) == $cep) {
+        if (isset($value['cep']) && str_replace("-", "", $value['cep']) == $cep ) {
             print "<tr>";
             print "<td>{$value['cep']}</td>";
             print "<td>{$value['logradouro']}</td>";
